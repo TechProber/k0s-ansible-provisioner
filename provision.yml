@@ -4,8 +4,12 @@
   become: yes
 
   roles:
-    - role: pre.ops/
-      tags: pre-ops
+  - role: pre.ops/
+    tags: pre-ops
+
+  - role: extra.ops/cni-plugins.ops/
+    tags: extra-ops
+    when: k0s_use_custom_config
 
 - name: Write/generate k0s config file on control plane node
   hosts:
